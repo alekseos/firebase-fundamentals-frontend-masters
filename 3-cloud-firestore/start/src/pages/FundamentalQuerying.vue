@@ -10,51 +10,45 @@ const expensesCol = collection(firestore, "expenses");
 
 let expensesQuery = null;
 // // 1. Get the first 200 expenses.
-// expensesQuery = query(expensesCol, limit(200));
+// expensesQuery = query(
+
+// );
 
 // // 2. Get all expenses categorized as 'pets'
-// expensesQuery = query(expensesCol, where("category", "==", "pets"));
+// expensesQuery = query(
+
+// );
 
 // // 3. Get all expenses less than $200, ordered from greatest to least
 // expensesQuery = query(
-//   expensesCol,
-//   where("cost", "<=", 200),
-//   orderBy("cost", "desc")
+
 // );
 
 // // 4. Get all expenses that occurred before July of 2021
-// expensesQuery = query(expensesCol, where("date", "<", new Date("06/01/2021")));
+// expensesQuery = query(
+
+// );
 
 // 5. Get all expenses between July 2021 and October 2021
 // expensesQuery = query(
-//   expensesCol,
-//   where("date", ">", new Date("06/01/2021")),
-//   where("date", "<", new Date("10/01/2021"))
+
 // );
 
 // Composite queries below
 
 // 6. Get all expenses between July 2021 and October 2021 categorized as 'fun'
 // expensesQuery = query(
-//   expensesCol,
-//   where("date", ">", new Date("06/01/2021")),
-//   where("date", "<", new Date("10/31/2021")),
-//   where("category", "==", "fun")
+
 // );
 
 // // 7. Get all expenses are NOT categorized as 'fun', 'clothes', 'gifts', 'home', and 'personal'
 // expensesQuery = query(
-//   expensesCol,
-//   where("category", "not-in", ["fun", "clothes", "gifts", "home", "personal"])
+
 // );
 
 // // 8. Get all expenses are categorized as 'food' that occurred in January 2021, but not on 12/26/2021
 // expensesQuery = query(
-//   expensesCol,
-//   where("category", "==", "food"),
-//   where("Date", ">", new Date("11/31/2021")),
-//   where("Date", "<", new Date("1/1/2022")),
-//   where("Date", "!=", new Date("12/26/2021"))
+
 // );
 
 const state = bindToTable(expensesQuery);

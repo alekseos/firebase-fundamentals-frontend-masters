@@ -8,19 +8,5 @@
         "destination": "/index.html"
       }
     ]
-  },
-  "emulators": {
-    "auth": {
-      "port": 9098
-    },
-    "firestore": {
-      "port": 8081
-    },
-    "hosting": {
-      "port": 5001
-    },
-    "ui": {
-      "enabled": true
-    }
   }
 }
