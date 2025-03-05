@@ -5,25 +5,23 @@
   },
   "hosting": {
     "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [{
-      "source": "**",
-      "function": "ssr"
-    }]
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "ssr"
+      }
+    ]
   },
   "emulators": {
     "auth": {
       "port": 9099
     },
     "functions": {
-      "port": 5001
+      "port": 5005
     },
     "firestore": {
-      "port": 8080
+      "port": 8083
     },
     "hosting": {
       "port": 5021
