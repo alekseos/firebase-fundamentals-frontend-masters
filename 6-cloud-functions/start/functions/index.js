@@ -39,11 +39,41 @@ exports.updateUserExpenses = functions.firestore
 exports.addCollaborator = functions.firestore
   .document("/budgets/{budgetId}/collaboratorRequests/{email}")
   .onCreate(async (snapshot, context) => {
+    const { email, budgetId } = context.params;
+
+    // budgets/{budgetId}/collaborators/{uid}
+
+    const userRecord = await getAuth.getUserByEmail(email);
+
     console.log("Collaborator request added:", snapshot.data());
+
+    const uidDoc = firestore
+      .collection("budgets")
+      .doc(budgetId)
+      .collection("collaborators")
+      .doc(userRecord.uid);
+
+    return uidDoc.set({ role: "collaborator" });
   });
 
 // 4. When a user is created, check if they have any collaboratorRequests that
 // exist and set them as collaborators.
 exports.userCreated = functions.auth.user().onCreate(async (user) => {
   console.log("User created:", user);
+
+  const groupQuery = firestore
+    .collectionGroup("collaboratorRequests")
+    .where("email", "==", user.email);
+
+  const snapshot = await groupQuery.get();
+  const batch = firestore.batch();
+
+  snapshot.map((doc) => {
+    const budgetDoc = doc.ref.parent;
+    const collaboratorDoc = budgetDoc.doc(user.uid);
+
+    batch.set(collaboratorDoc, { role: "collaborator" });
+  });
+
+  return batch.commit();
 });
